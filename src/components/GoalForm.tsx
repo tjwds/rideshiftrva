@@ -77,15 +77,15 @@ export function GoalForm({ existingGoal }: GoalFormProps) {
             <Button type="submit" className="bg-green-600 text-white font-semibold">
               {existingGoal ? "Update Goal" : "Set Goal"}
             </Button>
-            {existingGoal && (
-              <form action={clearGoal}>
-                <Button type="submit" className="bg-red-100 text-red-700">
-                  Clear Goal
-                </Button>
-              </form>
-            )}
           </div>
         </form>
+        {existingGoal && (
+          <form action={clearGoal} className="mt-2">
+            <Button type="submit" className="bg-red-100 text-red-700">
+              Clear Goal
+            </Button>
+          </form>
+        )}
       </CardContent>
     </Card>
   );
