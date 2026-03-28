@@ -9,7 +9,8 @@
     "transitPlans": "Planes de transporte",
     "myGoal": "Mi meta",
     "dashboard": "Panel",
-    "language": "English"
+    "language": "English",
+    "communityImpact": "Impacto comunitario"
   },
   "footer": {
     "builtAt": "Construido en",
@@ -207,6 +208,23 @@
       "name": "Virginia PATHS",
       "description": "Defensa de la seguridad peatonal y el transporte activo en Virginia, incluyendo evaluaciones de seguridad vial en Richmond."
     }
+  },
+  "impact": {
+    "title": "Impacto comunitario",
+    "subtitle": "Mira cómo Richmond se mueve — juntos.",
+    "description": "Cada viaje confirmado sin auto suma. Esta página muestra el impacto colectivo de los participantes de RideShift en toda la ciudad.",
+    "totalParticipants": "Participantes",
+    "totalTrips": "Viajes en auto evitados",
+    "totalMiles": "Millas no conducidas",
+    "totalCo2": "Lbs CO₂ ahorradas",
+    "modeBreakdownTitle": "Cómo se mueve Richmond",
+    "modeBreakdownSubtitle": "Viajes confirmados sin auto por modo",
+    "trips": "{count} viajes",
+    "demandSignal": "{count} residentes de Richmond eligieron {mode} — ¿nuestra infraestructura está a la altura?",
+    "callToAction": "¿Listo para sumar tu impacto?",
+    "getStarted": "Comenzar",
+    "noDataYet": "Aún no hay verificaciones — ¡sé el primero en generar impacto!",
+    "plannerNote": "Estos datos representan demanda real de transporte multimodal en Richmond. Cada viaje es una señal de que los residentes quieren alternativas a conducir solos."
   },
   "plans": {
     "title": "Planes de transporte de Richmond",

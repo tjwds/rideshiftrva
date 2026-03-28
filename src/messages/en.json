@@ -9,7 +9,8 @@
     "transitPlans": "Transit Plans",
     "myGoal": "My Goal",
     "dashboard": "Dashboard",
-    "language": "Español"
+    "language": "Español",
+    "communityImpact": "Community Impact"
   },
   "footer": {
     "builtAt": "Built at",
@@ -207,6 +208,23 @@
       "name": "Virginia PATHS",
       "description": "Pedestrian safety and active transportation advocacy across Virginia, including Richmond road safety assessments."
     }
+  },
+  "impact": {
+    "title": "Community Impact",
+    "subtitle": "See how Richmond is moving — together.",
+    "description": "Every confirmed car-free commute adds up. This page shows the collective impact of RideShift participants across the city.",
+    "totalParticipants": "Participants",
+    "totalTrips": "Car trips avoided",
+    "totalMiles": "Miles not driven",
+    "totalCo2": "Lbs CO₂ saved",
+    "modeBreakdownTitle": "How Richmond is getting around",
+    "modeBreakdownSubtitle": "Confirmed car-free trips by mode",
+    "trips": "{count} trips",
+    "demandSignal": "{count} Richmonders chose {mode} — is our infrastructure keeping up?",
+    "callToAction": "Ready to add your impact?",
+    "getStarted": "Get Started",
+    "noDataYet": "No check-ins yet — be the first to make an impact!",
+    "plannerNote": "This data represents real demand for multimodal transit in Richmond. Every trip is a signal that residents want alternatives to driving alone."
   },
   "plans": {
     "title": "Richmond Transportation Plans",

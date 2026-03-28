@@ -28,6 +28,11 @@ export function SiteHeader() {
               {t("transitPlans")}
             </Button>
           </Link>
+          <Link href="/impact">
+            <Button className="bg-transparent text-zinc-600 hover:text-zinc-900" size="sm">
+              {t("communityImpact")}
+            </Button>
+          </Link>
           <Link href="/goal">
             <Button className="bg-transparent text-zinc-600 hover:text-zinc-900" size="sm">
               {t("myGoal")}
