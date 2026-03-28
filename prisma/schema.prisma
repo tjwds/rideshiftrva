@@ -97,6 +97,7 @@ model Reward {
   description    String
   businessName   String
   businessLogo   String?
+  businessUrl    String?
   couponCode     String?
   validFrom      DateTime
   validTo        DateTime
