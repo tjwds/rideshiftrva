@@ -24,19 +24,26 @@ export function unsubscribeToken(email: string): string {
 
 export function unsubscribeUrl(email: string): string {
   const token = unsubscribeToken(email);
-  return `${baseUrl}/unsubscribe?email=${encodeURIComponent(email)}&token=${token}`;
+  return `${baseUrl}/unsubscribe?email=${encodeURIComponent(
+    email
+  )}&token=${token}`;
 }
 
 export function emailFooter(email: string): string {
   return `
     <p style="color: #999; font-size: 12px; margin-top: 32px; border-top: 1px solid #eee; padding-top: 16px;">
-      <a href="${unsubscribeUrl(email)}" style="color: #999;">Unsubscribe</a> from RideShift RVA emails.
+      <a href="${unsubscribeUrl(
+        email
+      )}" style="color: #999;">Unsubscribe</a> from RideShift RVA emails.
     </p>
   `;
 }
 
 export async function sendMail(options: nodemailer.SendMailOptions) {
-  const urls = typeof options.html === "string" ? [...options.html.matchAll(/href="([^"]*)"/g)] : [];
+  const urls =
+    typeof options.html === "string"
+      ? [...options.html.matchAll(/href="([^"]*)"/g)]
+      : [];
 
   // In dev mode, write the first link to a temp file for automation tooling
   if (isDev && urls.length > 0) {
@@ -47,9 +54,15 @@ export async function sendMail(options: nodemailer.SendMailOptions) {
   if (transporter) {
     await transporter.sendMail(options);
   } else if (isDev) {
-    console.log("\n╔══════════════════════════════════════════════════════════════╗");
-    console.log("║  EMAIL (no SMTP configured — set EMAIL_SERVER to send)     ║");
-    console.log("╚══════════════════════════════════════════════════════════════╝");
+    console.log(
+      "\n╔══════════════════════════════════════════════════════════════╗"
+    );
+    console.log(
+      "║  EMAIL (no SMTP configured — set EMAIL_SERVER to send)     ║"
+    );
+    console.log(
+      "╚══════════════════════════════════════════════════════════════╝"
+    );
     console.log(`  To:      ${options.to}`);
     console.log(`  Subject: ${options.subject}`);
     for (const match of urls) {
@@ -97,10 +110,20 @@ export async function sendCouponEmails(userId: string, weekKey: string) {
     .map(
       (r) => `
       <div style="background: #f4f4f5; border-radius: 12px; padding: 20px; margin: 12px 0; text-align: center;">
-        <p style="font-size: 14px; color: #666; margin: 0 0 4px 0;">${r.businessName}</p>
-        <p style="font-size: 18px; font-weight: 600; margin: 0 0 4px 0;">${r.title}</p>
-        <p style="color: #666; margin: 0 0 12px 0; font-size: 14px;">${r.description}</p>
-        ${r.couponCode ? `<p style="font-size: 24px; font-weight: 700; letter-spacing: 2px; color: #16a34a; margin: 0;">${r.couponCode}</p>` : ""}
+        <p style="font-size: 14px; color: #666; margin: 0 0 4px 0;">${
+          r.businessName
+        }</p>
+        <p style="font-size: 18px; font-weight: 600; margin: 0 0 4px 0;">${
+          r.title
+        }</p>
+        <p style="color: #666; margin: 0 0 12px 0; font-size: 14px;">${
+          r.description
+        }</p>
+        ${
+          r.couponCode
+            ? `<p style="font-size: 24px; font-weight: 700; letter-spacing: 2px; color: #16a34a; margin: 0;">${r.couponCode}</p>`
+            : ""
+        }
       </div>`
     )
     .join("");
@@ -108,7 +131,9 @@ export async function sendCouponEmails(userId: string, weekKey: string) {
   await sendMail({
     from: EMAIL_FROM,
     to: user.email,
-    subject: `Your weekly rewards from RideShift RVA (${availableRewards.length} deal${availableRewards.length !== 1 ? "s" : ""})`,
+    subject: `Your weekly rewards from RideShift RVA (${
+      availableRewards.length
+    } deal${availableRewards.length !== 1 ? "s" : ""})`,
     html: `
       <div style="max-width: 480px; margin: 0 auto; font-family: sans-serif;">
         <h2 style="color: #16a34a;">RideShift RVA</h2>
