@@ -1,4 +1,5 @@
 import nodemailer from "nodemailer";
+import crypto from "crypto";
 import fs from "fs";
 import path from "path";
 import os from "os";
@@ -13,6 +14,26 @@ export const transporter = hasSmtp
   : null;
 
 export const EMAIL_FROM = process.env.EMAIL_FROM || "noreply@rideshiftrva.com";
+
+const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
+
+export function unsubscribeToken(email: string): string {
+  const secret = process.env.NEXTAUTH_SECRET || "dev-secret";
+  return crypto.createHmac("sha256", secret).update(email).digest("hex");
+}
+
+export function unsubscribeUrl(email: string): string {
+  const token = unsubscribeToken(email);
+  return `${baseUrl}/unsubscribe?email=${encodeURIComponent(email)}&token=${token}`;
+}
+
+export function emailFooter(email: string): string {
+  return `
+    <p style="color: #999; font-size: 12px; margin-top: 32px; border-top: 1px solid #eee; padding-top: 16px;">
+      <a href="${unsubscribeUrl(email)}" style="color: #999;">Unsubscribe</a> from RideShift RVA emails.
+    </p>
+  `;
+}
 
 export async function sendMail(options: nodemailer.SendMailOptions) {
   const urls = typeof options.html === "string" ? [...options.html.matchAll(/href="([^"]*)"/g)] : [];
@@ -90,6 +111,7 @@ export async function sendCouponEmails(userId: string, weekKey: string) {
             <p style="color: #666; font-size: 14px;">
               Thank you for being part of a greener Richmond.
             </p>
+            ${emailFooter(user.email)}
           </div>
         `,
       });
