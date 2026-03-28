@@ -1,7 +1,8 @@
 {
   "meta": {
     "title": "RideShift RVA",
-    "description": "Mueve verde, ahorra verde. Gana recompensas locales por usar transporte sin auto en Richmond, VA."
+    "description": "Mueve verde, ahorra verde. Gana recompensas locales por usar transporte sin auto en Richmond, VA.",
+    "skipToContent": "Saltar al contenido principal"
   },
   "header": {
     "brand": "RideShift RVA",
@@ -15,7 +16,9 @@
   "footer": {
     "builtAt": "Construido en",
     "hackForRVA": "Hack for RVA",
-    "tagline": "Las ciudades prosperan cuando la gente se mueve por ellas con intención. Nuestra plataforma conecta a viajeros ecoconscientes con negocios locales, convirtiendo cada viaje en autobús, bicicleta compartida y viaje compartido en un paso hacia recompensas semanales exclusivas."
+    "tagline": "Las ciudades prosperan cuando la gente se mueve por ellas con intención. Nuestra plataforma conecta a viajeros ecoconscientes con negocios locales, convirtiendo cada viaje en autobús, bicicleta compartida y viaje compartido en un paso hacia recompensas semanales exclusivas.",
+    "viewOnGitHub": "ver código en GitHub",
+    "contactUs": "contáctanos"
   },
   "landing": {
     "hero": {
@@ -147,6 +150,7 @@
     "signInTitle": "RideShift RVA",
     "signInSubtitle": "Inicia sesión con tu correo",
     "goalConfirmed": "¡Meta confirmada! Inicia sesión para reclamar tus recompensas.",
+    "emailLabel": "Correo electrónico",
     "sendMagicLink": "Enviar enlace mágico",
     "sending": "Enviando...",
     "checkEmail": "Revisa tu correo",

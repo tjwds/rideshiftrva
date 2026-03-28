@@ -32,7 +32,7 @@ function SignInFormInner() {
           </div>
         )}
         <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-          <label htmlFor="email" className="sr-only">Email address</label>
+          <label htmlFor="email" className="sr-only">{t("emailLabel")}</label>
           <Input
             id="email"
             type="email"

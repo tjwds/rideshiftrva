@@ -1,7 +1,8 @@
 {
   "meta": {
     "title": "RideShift RVA",
-    "description": "Move green, save green. Earn local rewards for car-free commuting in Richmond, VA."
+    "description": "Move green, save green. Earn local rewards for car-free commuting in Richmond, VA.",
+    "skipToContent": "Skip to main content"
   },
   "header": {
     "brand": "RideShift RVA",
@@ -15,7 +16,9 @@
   "footer": {
     "builtAt": "Built at",
     "hackForRVA": "Hack for RVA",
-    "tagline": "Cities thrive when people move through them intentionally. Our platform connects eco-conscious commuters with local businesses — turning every bus ride, bike share, and carpool into a stepping stone toward exclusive weekly rewards."
+    "tagline": "Cities thrive when people move through them intentionally. Our platform connects eco-conscious commuters with local businesses — turning every bus ride, bike share, and carpool into a stepping stone toward exclusive weekly rewards.",
+    "viewOnGitHub": "view code on GitHub",
+    "contactUs": "contact us"
   },
   "landing": {
     "hero": {
@@ -147,6 +150,7 @@
     "signInTitle": "RideShift RVA",
     "signInSubtitle": "Sign in with your email",
     "goalConfirmed": "Goal confirmed! Sign in to claim your rewards.",
+    "emailLabel": "Email address",
     "sendMagicLink": "Send Magic Link",
     "sending": "Sending...",
     "checkEmail": "Check Your Email",
