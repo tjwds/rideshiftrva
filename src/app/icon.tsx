@@ -7,7 +7,7 @@ export const contentType = "image/png";
 
 export default async function Icon() {
   const urbanistBold = await readFile(
-    join(process.cwd(), "assets/Urbanist-Bold.ttf"),
+    join(process.cwd(), "assets/Urbanist-Black.ttf")
   );
 
   return new ImageResponse(
@@ -19,33 +19,44 @@ export default async function Icon() {
           justifyContent: "center",
           width: "100%",
           height: "100%",
-          borderRadius: 6,
-          background: "#16a34a",
-          color: "white",
-          paddingLeft: 2,
+          background: "transparent",
         }}
       >
-        <span
+        <div
           style={{
-            fontSize: 15,
-            fontFamily: "Urbanist",
-            fontWeight: 700,
-            letterSpacing: -0.5,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            width: 32,
+            height: 20,
+            borderRadius: 3,
+            background: "#16a34a",
+            color: "white",
+            paddingLeft: 2,
           }}
         >
-          RS
-        </span>
-        <span
-          style={{
-            fontSize: 22,
-            fontFamily: "Urbanist",
-            fontWeight: 700,
-            marginLeft: 1,
-            marginTop: -2,
-          }}
-        >
-          ›
-        </span>
+          <span
+            style={{
+              fontSize: 12,
+              fontFamily: "Urbanist",
+              fontWeight: 900,
+              letterSpacing: -0.5,
+            }}
+          >
+            RS
+          </span>
+          <span
+            style={{
+              fontSize: 16,
+              fontFamily: "Urbanist",
+              fontWeight: 900,
+              marginLeft: 1,
+              marginTop: -2,
+            }}
+          >
+            ›
+          </span>
+        </div>
       </div>
     ),
     {
@@ -55,9 +66,9 @@ export default async function Icon() {
           name: "Urbanist",
           data: urbanistBold,
           style: "normal",
-          weight: 700,
+          weight: 900,
         },
       ],
-    },
+    }
   );
 }
