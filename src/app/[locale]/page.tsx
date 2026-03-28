@@ -34,16 +34,18 @@ export default async function HomePage({
   return (
     <div className="flex min-h-screen flex-col">
       {/* Hero */}
-      <section className="flex flex-col items-center justify-center gap-6 px-4 py-24 text-center">
+      <section className="flex flex-col items-center justify-center gap-6 px-4 py-12 text-center">
         <h1 className="text-5xl font-bold tracking-tight sm:text-6xl">
-          {t("hero.title")}{" "}
+          {t("hero.title")}
+          <br className="sm:hidden" />
+          {" "}
           <span className="text-green-600">{t("hero.titleHighlight")}</span>
         </h1>
         <p className="max-w-xl text-xl text-zinc-600">{t("hero.subtitle")}</p>
         <p className="max-w-2xl text-lg text-zinc-500">
           {t("hero.description")}
         </p>
-        <div className="mt-4 flex gap-4">
+        <div className="mt-2 flex flex-col items-center gap-3 sm:flex-row sm:gap-4">
           <Link href="/auth/signin">
             <Button className="bg-green-600 text-white font-semibold text-lg px-8 py-3">
               {t("hero.getStarted")}

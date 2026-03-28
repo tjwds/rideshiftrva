@@ -18,7 +18,9 @@ export function SiteHeader() {
   return (
     <header className="border-b border-zinc-100">
       <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-2 px-4 py-3">
-        <Link href="/" className="text-xl font-bold text-green-600">
+        <Link href="/" className="flex items-center gap-2 text-xl font-bold text-green-600">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/rideshiftrva-logo.jpg" alt="" className="h-12 w-12 rounded" />
           {t("brand")}
         </Link>
         <nav
@@ -55,7 +57,7 @@ export function SiteHeader() {
             </Button>
           </Link>
           <Link href="/dashboard">
-            <Button className="bg-green-600 text-white font-semibold" size="sm">
+            <Button className="bg-transparent text-green-600 font-bold text-base hover:text-green-700" size="sm">
               {t("dashboard")}
             </Button>
           </Link>
