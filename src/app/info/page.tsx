@@ -21,9 +21,10 @@ const RESOURCES = [
         description: "Route maps, timetables, and system overview.",
       },
       {
-        name: "GRTC Real-Time Bus Tracker",
-        url: "https://grtcbustracker.com/",
-        description: "Live bus locations so you know exactly when yours arrives.",
+        name: "Transit App (GRTC recommended)",
+        url: "https://www.ridegrtc.com/rider-guide/mobile-apps/",
+        description:
+          "GRTC's recommended app for real-time bus tracking, trip planning, and arrival times.",
       },
     ],
   },
