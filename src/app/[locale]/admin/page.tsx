@@ -1,8 +1,17 @@
 import { prisma } from "@/lib/prisma";
 import { getCurrentWeekKey } from "@/lib/weeks";
 import { Card, CardContent } from "@heroui/react";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
-export default async function AdminPage() {
+export default async function AdminPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations("admin.stats");
   const weekKey = getCurrentWeekKey();
 
   const [totalUsers, usersWithGoals, confirmedThisWeek, redemptionsByReward] =
@@ -31,13 +40,13 @@ export default async function AdminPage() {
 
   return (
     <div>
-      <h2 className="mb-4 text-xl font-semibold">Dashboard</h2>
+      <h2 className="mb-4 text-xl font-semibold">{t("dashboard")}</h2>
 
       <div className="mb-8 grid gap-4 sm:grid-cols-3">
         <Card>
           <CardContent className="text-center">
             <p className="text-4xl font-bold text-green-600">{totalUsers}</p>
-            <p className="text-sm text-zinc-500">Total Users</p>
+            <p className="text-sm text-zinc-500">{t("totalUsers")}</p>
           </CardContent>
         </Card>
         <Card>
@@ -45,7 +54,7 @@ export default async function AdminPage() {
             <p className="text-4xl font-bold text-green-600">
               {usersWithGoals}
             </p>
-            <p className="text-sm text-zinc-500">Users with Goals</p>
+            <p className="text-sm text-zinc-500">{t("usersWithGoals")}</p>
           </CardContent>
         </Card>
         <Card>
@@ -54,15 +63,17 @@ export default async function AdminPage() {
               {confirmedThisWeek}
             </p>
             <p className="text-sm text-zinc-500">
-              Confirmed This Week ({weekKey})
+              {t("confirmedThisWeek", { weekKey })}
             </p>
           </CardContent>
         </Card>
       </div>
 
-      <h3 className="mb-3 text-lg font-semibold">Redemptions by Reward</h3>
+      <h3 className="mb-3 text-lg font-semibold">
+        {t("redemptionsByReward")}
+      </h3>
       {redemptionsByReward.length === 0 ? (
-        <p className="text-sm text-zinc-500">No redemptions yet.</p>
+        <p className="text-sm text-zinc-500">{t("noRedemptions")}</p>
       ) : (
         <div className="flex flex-col gap-2">
           {redemptionsByReward
@@ -74,7 +85,7 @@ export default async function AdminPage() {
                   <CardContent className="flex items-center justify-between">
                     <div>
                       <p className="font-medium">
-                        {reward?.title ?? "Unknown Reward"}
+                        {reward?.title ?? t("unknownReward")}
                       </p>
                       <p className="text-sm text-zinc-500">
                         {reward?.businessName}

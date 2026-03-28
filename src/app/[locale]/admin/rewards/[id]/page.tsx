@@ -1,19 +1,16 @@
-import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
 import { redirect } from "next/navigation";
 import { RewardForm } from "@/components/admin/RewardForm";
 import { format } from "date-fns";
-
-export const metadata: Metadata = {
-  title: "Edit Reward",
-};
+import { setRequestLocale } from "next-intl/server";
 
 export default async function EditRewardPage({
   params,
 }: {
-  params: Promise<{ id: string }>;
+  params: Promise<{ locale: string; id: string }>;
 }) {
-  const { id } = await params;
+  const { locale, id } = await params;
+  setRequestLocale(locale);
 
   const reward = await prisma.reward.findUnique({ where: { id } });
   if (!reward) redirect("/admin/rewards");

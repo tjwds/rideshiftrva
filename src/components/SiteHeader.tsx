@@ -55,14 +55,14 @@ export function SiteHeader() {
             </Button>
           </Link>
           {isAdmin && (
-            <NextLink href="/admin">
+            <Link href="/admin">
               <Button
                 className="bg-zinc-800 text-white font-semibold"
                 size="sm"
               >
                 Admin
               </Button>
-            </NextLink>
+            </Link>
           )}
           <NextLink href={`/${otherLocale}${pathname}`}>
             <Button

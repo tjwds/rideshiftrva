@@ -3,7 +3,8 @@
 import { Card, CardContent, CardFooter, Chip, Button } from "@heroui/react";
 import { toggleRewardActive } from "@/lib/actions/admin";
 import { useState } from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 interface RewardListItemProps {
   reward: {
@@ -22,6 +23,7 @@ interface RewardListItemProps {
 
 export function RewardListItem({ reward }: RewardListItemProps) {
   const [toggling, setToggling] = useState(false);
+  const t = useTranslations("admin.rewards");
 
   async function handleToggle() {
     setToggling(true);
@@ -49,7 +51,7 @@ export function RewardListItem({ reward }: RewardListItemProps) {
                 }
                 size="sm"
               >
-                {reward.active ? "Active" : "Inactive"}
+                {reward.active ? t("active") : t("inactive")}
               </Chip>
             </div>
             <p className="text-sm font-medium text-zinc-600">
@@ -65,14 +67,16 @@ export function RewardListItem({ reward }: RewardListItemProps) {
             </p>
             <p className="text-xs text-zinc-400">
               {reward.maxRedemptions
-                ? `of ${reward.maxRedemptions} claimed`
-                : "claimed"}
+                ? t("ofClaimed", { max: reward.maxRedemptions })
+                : t("claimed")}
             </p>
           </div>
         </div>
 
         <div className="flex items-center gap-4 text-xs text-zinc-400">
-          <span>{reward.validFrom} — {reward.validTo}</span>
+          <span>
+            {reward.validFrom} — {reward.validTo}
+          </span>
           {reward.couponCode && (
             <code className="rounded bg-zinc-100 px-2 py-0.5 font-mono text-zinc-600">
               {reward.couponCode}
@@ -83,7 +87,7 @@ export function RewardListItem({ reward }: RewardListItemProps) {
       <CardFooter className="pt-0 flex gap-2">
         <Link href={`/admin/rewards/${reward.id}`}>
           <Button className="bg-zinc-100 text-zinc-700" size="sm">
-            Edit
+            {t("edit")}
           </Button>
         </Link>
         <Button
@@ -96,7 +100,7 @@ export function RewardListItem({ reward }: RewardListItemProps) {
           isDisabled={toggling}
           onPress={handleToggle}
         >
-          {reward.active ? "Deactivate" : "Activate"}
+          {reward.active ? t("deactivate") : t("activate")}
         </Button>
       </CardFooter>
     </Card>

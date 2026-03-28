@@ -201,6 +201,49 @@
       "description": "Defensa de la seguridad peatonal y el transporte activo en Virginia, incluyendo evaluaciones de seguridad vial en Richmond."
     }
   },
+  "admin": {
+    "title": "Administración",
+    "backToApp": "Volver a la app",
+    "nav": {
+      "stats": "Estadísticas",
+      "rewards": "Recompensas"
+    },
+    "stats": {
+      "dashboard": "Panel",
+      "totalUsers": "Usuarios totales",
+      "usersWithGoals": "Usuarios con metas",
+      "confirmedThisWeek": "Confirmados esta semana ({weekKey})",
+      "redemptionsByReward": "Canjes por recompensa",
+      "noRedemptions": "Aún no hay canjes.",
+      "unknownReward": "Recompensa desconocida"
+    },
+    "rewards": {
+      "title": "Recompensas",
+      "createReward": "Crear recompensa",
+      "editReward": "Editar recompensa",
+      "noRewards": "Aún no hay recompensas.",
+      "active": "Activa",
+      "inactive": "Inactiva",
+      "claimed": "canjeados",
+      "ofClaimed": "de {max} canjeados",
+      "edit": "Editar",
+      "activate": "Activar",
+      "deactivate": "Desactivar",
+      "updateReward": "Actualizar recompensa"
+    },
+    "form": {
+      "title": "Título",
+      "description": "Descripción",
+      "businessName": "Nombre del negocio",
+      "businessLogoUrl": "URL del logo del negocio",
+      "businessWebsiteUrl": "URL del sitio web del negocio",
+      "couponCode": "Código de cupón",
+      "validFrom": "Válido desde",
+      "validTo": "Válido hasta",
+      "maxRedemptions": "Canjes máximos",
+      "unlimitedPlaceholder": "Dejar en blanco para ilimitado"
+    }
+  },
   "plans": {
     "title": "Planes de transporte de Richmond",
     "subtitle": "Richmond está transformando el transporte con los siguientes esfuerzos:",

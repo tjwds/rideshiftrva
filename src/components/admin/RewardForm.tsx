@@ -2,6 +2,7 @@
 
 import { Card, CardHeader, CardContent, Button } from "@heroui/react";
 import { createReward, updateReward } from "@/lib/actions/admin";
+import { useTranslations } from "next-intl";
 
 interface RewardFormProps {
   reward?: {
@@ -24,12 +25,14 @@ const inputClass =
 
 export function RewardForm({ reward }: RewardFormProps) {
   const isEdit = !!reward;
+  const t = useTranslations("admin.rewards");
+  const tf = useTranslations("admin.form");
 
   return (
     <Card className="w-full max-w-2xl">
       <CardHeader className="flex flex-col gap-1 pb-0">
         <h2 className="text-xl font-bold">
-          {isEdit ? "Edit Reward" : "Create Reward"}
+          {isEdit ? t("editReward") : t("createReward")}
         </h2>
       </CardHeader>
       <CardContent>
@@ -41,7 +44,7 @@ export function RewardForm({ reward }: RewardFormProps) {
 
           <div>
             <label className="block text-sm font-medium mb-1">
-              Title <span className="text-red-500">*</span>
+              {tf("title")} <span className="text-red-500">*</span>
             </label>
             <input
               name="title"
@@ -53,7 +56,7 @@ export function RewardForm({ reward }: RewardFormProps) {
 
           <div>
             <label className="block text-sm font-medium mb-1">
-              Description <span className="text-red-500">*</span>
+              {tf("description")} <span className="text-red-500">*</span>
             </label>
             <textarea
               name="description"
@@ -66,7 +69,7 @@ export function RewardForm({ reward }: RewardFormProps) {
 
           <div>
             <label className="block text-sm font-medium mb-1">
-              Business Name <span className="text-red-500">*</span>
+              {tf("businessName")} <span className="text-red-500">*</span>
             </label>
             <input
               name="businessName"
@@ -78,7 +81,7 @@ export function RewardForm({ reward }: RewardFormProps) {
 
           <div>
             <label className="block text-sm font-medium mb-1">
-              Business Logo URL
+              {tf("businessLogoUrl")}
             </label>
             <input
               name="businessLogo"
@@ -90,7 +93,7 @@ export function RewardForm({ reward }: RewardFormProps) {
 
           <div>
             <label className="block text-sm font-medium mb-1">
-              Business Website URL
+              {tf("businessWebsiteUrl")}
             </label>
             <input
               name="businessUrl"
@@ -102,7 +105,7 @@ export function RewardForm({ reward }: RewardFormProps) {
 
           <div>
             <label className="block text-sm font-medium mb-1">
-              Coupon Code
+              {tf("couponCode")}
             </label>
             <input
               name="couponCode"
@@ -114,7 +117,7 @@ export function RewardForm({ reward }: RewardFormProps) {
           <div className="grid gap-4 sm:grid-cols-2">
             <div>
               <label className="block text-sm font-medium mb-1">
-                Valid From <span className="text-red-500">*</span>
+                {tf("validFrom")} <span className="text-red-500">*</span>
               </label>
               <input
                 type="date"
@@ -126,7 +129,7 @@ export function RewardForm({ reward }: RewardFormProps) {
             </div>
             <div>
               <label className="block text-sm font-medium mb-1">
-                Valid To <span className="text-red-500">*</span>
+                {tf("validTo")} <span className="text-red-500">*</span>
               </label>
               <input
                 type="date"
@@ -140,14 +143,14 @@ export function RewardForm({ reward }: RewardFormProps) {
 
           <div>
             <label className="block text-sm font-medium mb-1">
-              Max Redemptions
+              {tf("maxRedemptions")}
             </label>
             <input
               type="number"
               name="maxRedemptions"
               min={1}
               defaultValue={reward?.maxRedemptions?.toString() ?? ""}
-              placeholder="Leave blank for unlimited"
+              placeholder={tf("unlimitedPlaceholder")}
               className={inputClass}
             />
           </div>
@@ -157,7 +160,7 @@ export function RewardForm({ reward }: RewardFormProps) {
               type="submit"
               className="bg-green-600 text-white font-semibold"
             >
-              {isEdit ? "Update Reward" : "Create Reward"}
+              {isEdit ? t("updateReward") : t("createReward")}
             </Button>
           </div>
         </form>

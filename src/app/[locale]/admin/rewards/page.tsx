@@ -1,10 +1,20 @@
 import { prisma } from "@/lib/prisma";
 import { RewardListItem } from "@/components/admin/RewardListItem";
 import { Button } from "@heroui/react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { format } from "date-fns";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 
-export default async function AdminRewardsPage() {
+export default async function AdminRewardsPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const t = await getTranslations("admin.rewards");
+
   const rewards = await prisma.reward.findMany({
     orderBy: { createdAt: "desc" },
     include: { _count: { select: { redemptions: true } } },
@@ -13,16 +23,16 @@ export default async function AdminRewardsPage() {
   return (
     <div>
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="text-xl font-semibold">Rewards</h2>
+        <h2 className="text-xl font-semibold">{t("title")}</h2>
         <Link href="/admin/rewards/new">
           <Button className="bg-green-600 text-white font-semibold" size="sm">
-            Create Reward
+            {t("createReward")}
           </Button>
         </Link>
       </div>
 
       {rewards.length === 0 ? (
-        <p className="text-sm text-zinc-500">No rewards yet.</p>
+        <p className="text-sm text-zinc-500">{t("noRewards")}</p>
       ) : (
         <div className="flex flex-col gap-3">
           {rewards.map((reward) => (

@@ -1,15 +1,16 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-
-const links = [
-  { href: "/admin", label: "Stats", exact: true },
-  { href: "/admin/rewards", label: "Rewards", exact: false },
-];
+import { Link, usePathname } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 
 export function AdminNav() {
   const pathname = usePathname();
+  const t = useTranslations("admin.nav");
+
+  const links = [
+    { href: "/admin" as const, label: t("stats"), exact: true },
+    { href: "/admin/rewards" as const, label: t("rewards"), exact: false },
+  ];
 
   return (
     <nav className="flex gap-6">

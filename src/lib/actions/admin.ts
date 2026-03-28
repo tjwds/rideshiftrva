@@ -4,6 +4,7 @@ import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
+import { getLocale } from "next-intl/server";
 
 async function requireAdmin() {
   const session = await auth();
@@ -46,9 +47,10 @@ export async function createReward(formData: FormData) {
     },
   });
 
-  revalidatePath("/admin/rewards");
-  revalidatePath("/");
-  redirect("/admin/rewards");
+  revalidatePath("/admin/rewards", "layout");
+  revalidatePath("/", "layout");
+  const locale = await getLocale();
+  redirect(`/${locale}/admin/rewards`);
 }
 
 export async function updateReward(formData: FormData) {
@@ -94,9 +96,10 @@ export async function updateReward(formData: FormData) {
     },
   });
 
-  revalidatePath("/admin/rewards");
-  revalidatePath("/");
-  redirect("/admin/rewards");
+  revalidatePath("/admin/rewards", "layout");
+  revalidatePath("/", "layout");
+  const locale = await getLocale();
+  redirect(`/${locale}/admin/rewards`);
 }
 
 export async function toggleRewardActive(rewardId: string) {
@@ -110,6 +113,6 @@ export async function toggleRewardActive(rewardId: string) {
     data: { active: !reward.active },
   });
 
-  revalidatePath("/admin/rewards");
-  revalidatePath("/");
+  revalidatePath("/admin/rewards", "layout");
+  revalidatePath("/", "layout");
 }
