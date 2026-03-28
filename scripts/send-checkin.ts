@@ -1,6 +1,6 @@
 /**
  * Send a weekly check-in email to a specific email address.
- * Looks up the user's actual goal from the database.
+ * Looks up the user's actual goals from the database.
  *
  * Usage:
  *   npx tsx scripts/send-checkin.ts <email>            # send for real
@@ -43,29 +43,44 @@ async function main() {
     process.exit(1);
   }
 
-  if (!user.goal) {
-    console.error(`User ${email} has no goal set.`);
+  if (!user.goal || !user.goal.items.length) {
+    console.error(`User ${email} has no goals set.`);
     process.exit(1);
   }
 
-  const modeLabel = MODE_LABELS[user.goal.mode] || user.goal.mode;
   const confirmToken = crypto.randomBytes(32).toString("hex");
-  const confirmUrl = `${baseUrl}/checkin/confirm?token=${confirmToken}`;
+  const yesUrl = `${baseUrl}/checkin/confirm?token=${confirmToken}&response=yes`;
+  const noUrl = `${baseUrl}/checkin/confirm?token=${confirmToken}&response=no`;
 
-  const subject = `Did you ${modeLabel.toLowerCase()} ${user.goal.daysPerWeek} days this week?`;
+  const goalBullets = user.goal.items
+    .map((g) => `<li>${MODE_LABELS[g.mode] || g.mode} ${g.daysPerWeek} day${g.daysPerWeek !== 1 ? "s" : ""}</li>`)
+    .join("");
+
+  const goalSummary = user.goal.items
+    .map((g) => `${MODE_LABELS[g.mode] || g.mode} ${g.daysPerWeek}x/week`)
+    .join(", ");
+
+  const subject = "Did you meet your weekly travel sustainability goals?";
   const html = `
   <div style="max-width: 480px; margin: 0 auto; font-family: sans-serif;">
     <h2 style="color: #16a34a;">Ride Shift RVA</h2>
     <p>Hey${user.name ? ` ${user.name}` : ""}!</p>
-    <p>
-      Your goal this week: <strong>${modeLabel} ${user.goal.daysPerWeek} days</strong>
-    </p>
-    <p>Did you do it?</p>
-    <a href="${confirmUrl}" style="display: inline-block; padding: 14px 28px; background: #16a34a; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 16px;">
-      Yes, I did it!
-    </a>
+    <p>Did you meet your sustainable travel goals this week?</p>
+    <p>Your weekly goals were:</p>
+    <ul style="margin: 8px 0 16px 0; padding-left: 20px;">${goalBullets}</ul>
+    <div style="margin: 20px 0;">
+      <a href="${yesUrl}" style="display: inline-block; padding: 14px 28px; background: #16a34a; color: white; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 16px; margin-right: 8px;">
+        Yes
+      </a>
+      <a href="${noUrl}" style="display: inline-block; padding: 14px 28px; background: #e4e4e7; color: #3f3f46; text-decoration: none; border-radius: 8px; font-weight: 600; font-size: 16px;">
+        No
+      </a>
+    </div>
     <p style="color: #666; font-size: 14px; margin-top: 16px;">
-      Confirming unlocks this week's rewards from local Richmond businesses.
+      Either way, we appreciate your commitment to a greener Richmond.
+    </p>
+    <p style="color: #666; font-size: 14px;">
+      <a href="${baseUrl}/goal" style="color: #16a34a;">Want to change your goals?</a>
     </p>
   </div>
 `;
@@ -76,9 +91,10 @@ async function main() {
     console.log(`To:      ${email}`);
     console.log(`Subject: ${subject}`);
     console.log(`Name:    ${user.name || "(none)"}`);
-    console.log(`Goal:    ${modeLabel} ${user.goal.daysPerWeek}x/week`);
+    console.log(`Goals:   ${goalSummary}`);
     console.log(`Token:   ${confirmToken}`);
-    console.log(`Link:    ${confirmUrl}`);
+    console.log(`Yes:     ${yesUrl}`);
+    console.log(`No:      ${noUrl}`);
     console.log(`\n--- HTML body ---\n`);
     console.log(html);
     process.exit(0);
@@ -91,18 +107,14 @@ async function main() {
 
   const transporter = nodemailer.createTransport(process.env.EMAIL_SERVER);
 
-  console.log(`Sending check-in email to ${email} (${modeLabel} ${user.goal.daysPerWeek}x/week)...`);
+  console.log(`Sending check-in email to ${email} (${goalSummary})...`);
 
-  await transporter.sendMail({
-    from: emailFrom,
-    to: email,
-    subject,
-    html,
-  });
+  await transporter.sendMail({ from: emailFrom, to: email, subject, html });
 
   console.log("Sent!");
-  console.log(`\nConfirm link: ${confirmUrl}`);
-  console.log(`(Note: this token is not in the database — the confirm page will show "Already confirmed")`);
+  console.log(`\nYes link: ${yesUrl}`);
+  console.log(`No link:  ${noUrl}`);
+  console.log(`(Note: this token is not in the database — the confirm page will show "Already responded")`);
 }
 
 main()
