@@ -63,6 +63,13 @@ export default async function LocaleLayout({ children, params }: Props) {
               </svg>
               view code on GitHub
             </a>
+            <span className="mx-2 text-zinc-300">·</span>
+            <a
+              href="mailto:rideshiftrva@joewoods.dev"
+              className="mt-3 inline-flex items-center gap-1.5 text-sm text-zinc-400 underline underline-offset-2 hover:text-zinc-600"
+            >
+              contact us
+            </a>
           </div>
         </footer>
       </Providers>
