@@ -9,6 +9,7 @@ const MODES = [
   { value: "bus", label: "Bus" },
   { value: "carpool", label: "Carpool" },
   { value: "walk", label: "Walk" },
+  { value: "scooter", label: "Scooter" },
 ];
 
 interface GoalFormProps {

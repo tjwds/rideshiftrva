@@ -28,6 +28,7 @@ export function getModeLabel(mode: string): string {
     bike: "Bike",
     bus: "Bus",
     walk: "Walk",
+    scooter: "Scooter",
   };
   return labels[mode] || mode;
 }

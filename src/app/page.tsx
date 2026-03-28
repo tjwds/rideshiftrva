@@ -56,7 +56,7 @@ function LandingPage() {
             </div>
             <div>
               <p className="text-3xl font-bold text-green-600">~3%</p>
-              <p className="text-sm text-zinc-500">Walk / bike</p>
+              <p className="text-sm text-zinc-500">Walk / bike / scooter</p>
             </div>
           </div>
         </div>
@@ -87,7 +87,7 @@ function LandingPage() {
                 <p className="text-4xl font-bold text-green-600">1</p>
                 <h3 className="mt-2 text-lg font-semibold">Move</h3>
                 <p className="text-sm text-zinc-500">
-                  Take the bus, bike, walk, or combine modes — then set your
+                  Take the bus, bike, scooter, walk, or combine modes — then set your
                   weekly goal in the app
                 </p>
               </CardContent>
