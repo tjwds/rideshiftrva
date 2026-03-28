@@ -17,6 +17,11 @@ export function SiteHeader() {
               Transit Resources
             </Button>
           </Link>
+          <Link href="/plans">
+            <Button className="bg-transparent text-zinc-600 hover:text-zinc-900" size="sm">
+              Plans
+            </Button>
+          </Link>
           <Link href="/goal">
             <Button className="bg-transparent text-zinc-600 hover:text-zinc-900" size="sm">
               My Goal
