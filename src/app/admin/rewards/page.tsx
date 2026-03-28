@@ -31,10 +31,12 @@ export default async function AdminRewardsPage() {
               reward={{
                 id: reward.id,
                 title: reward.title,
+                description: reward.description,
                 businessName: reward.businessName,
+                couponCode: reward.couponCode,
                 active: reward.active,
-                validFrom: format(reward.validFrom, "yyyy-MM-dd"),
-                validTo: format(reward.validTo, "yyyy-MM-dd"),
+                validFrom: format(reward.validFrom, "MMM d, yyyy"),
+                validTo: format(reward.validTo, "MMM d, yyyy"),
                 maxRedemptions: reward.maxRedemptions,
                 totalRedemptions: reward._count.redemptions,
               }}

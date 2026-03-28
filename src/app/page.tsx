@@ -13,8 +13,7 @@ function LandingPage() {
       {/* Hero */}
       <section className="flex flex-col items-center justify-center gap-6 px-4 py-24 text-center">
         <h1 className="text-5xl font-bold tracking-tight sm:text-6xl">
-          Move Richmond.{" "}
-          <span className="text-green-600">Get Rewarded.</span>
+          Move Richmond. <span className="text-green-600">Get Rewarded.</span>
         </h1>
         <p className="max-w-xl text-xl text-zinc-600">
           Mix your commute. Unlock local deals.
@@ -92,8 +91,8 @@ function LandingPage() {
                 <p className="text-4xl font-bold text-green-600">1</p>
                 <h3 className="mt-2 text-lg font-semibold">Move</h3>
                 <p className="text-sm text-zinc-500">
-                  Take the bus, bike, scooter, walk, or combine modes — then set your
-                  weekly goal in the app
+                  Take the bus, bike, scooter, walk, or combine modes — then set
+                  your weekly goal in the app
                 </p>
               </CardContent>
             </Card>
@@ -102,8 +101,8 @@ function LandingPage() {
                 <p className="text-4xl font-bold text-green-600">2</p>
                 <h3 className="mt-2 text-lg font-semibold">Confirm</h3>
                 <p className="text-sm text-zinc-500">
-                  Get a Sunday check-in email and confirm you met your goal
-                  with one click
+                  Get a Sunday check-in email and confirm you met your goal with
+                  one click
                 </p>
               </CardContent>
             </Card>
@@ -138,8 +137,8 @@ function LandingPage() {
               <h3 className="text-xl font-bold">For Local Businesses</h3>
               <p className="mt-2 text-zinc-600">
                 Turn Richmond commuters into your regulars. List a weekly deal,
-                attract foot traffic, and show your community you&apos;re invested
-                in a cleaner, smarter city.
+                attract foot traffic, and show your community you&apos;re
+                invested in a cleaner, smarter city.
               </p>
             </CardContent>
           </Card>
@@ -163,7 +162,6 @@ function LandingPage() {
           </div>
         </div>
       </section>
-
     </div>
   );
 }
@@ -176,7 +174,10 @@ export default async function HomePage() {
     prisma.goal.findUnique({ where: { userId: session.user.id } }),
     prisma.weeklyCheckIn.findUnique({
       where: {
-        userId_weekKey: { userId: session.user.id, weekKey: getCurrentWeekKey() },
+        userId_weekKey: {
+          userId: session.user.id,
+          weekKey: getCurrentWeekKey(),
+        },
       },
     }),
     prisma.weeklyCheckIn.findMany({
@@ -230,7 +231,9 @@ export default async function HomePage() {
               </p>
             </div>
             {confirmed ? (
-              <Chip className="bg-green-100 text-green-700">This week: Confirmed!</Chip>
+              <Chip className="bg-green-100 text-green-700">
+                This week: Confirmed!
+              </Chip>
             ) : (
               <Chip className="bg-amber-100 text-amber-700">
                 Complete your check-in on Sunday to unlock

@@ -22,7 +22,9 @@ export async function createReward(formData: FormData) {
   const validFrom = formData.get("validFrom") as string;
   const validTo = formData.get("validTo") as string;
   const maxRedemptionsStr = formData.get("maxRedemptions") as string;
-  const maxRedemptions = maxRedemptionsStr ? parseInt(maxRedemptionsStr, 10) : null;
+  const maxRedemptions = maxRedemptionsStr
+    ? parseInt(maxRedemptionsStr, 10)
+    : null;
 
   if (!title || !description || !businessName || !validFrom || !validTo) {
     throw new Error("Missing required fields");
@@ -59,9 +61,18 @@ export async function updateReward(formData: FormData) {
   const validFrom = formData.get("validFrom") as string;
   const validTo = formData.get("validTo") as string;
   const maxRedemptionsStr = formData.get("maxRedemptions") as string;
-  const maxRedemptions = maxRedemptionsStr ? parseInt(maxRedemptionsStr, 10) : null;
+  const maxRedemptions = maxRedemptionsStr
+    ? parseInt(maxRedemptionsStr, 10)
+    : null;
 
-  if (!id || !title || !description || !businessName || !validFrom || !validTo) {
+  if (
+    !id ||
+    !title ||
+    !description ||
+    !businessName ||
+    !validFrom ||
+    !validTo
+  ) {
     throw new Error("Missing required fields");
   }
 
