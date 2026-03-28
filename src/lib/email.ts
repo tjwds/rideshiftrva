@@ -1,7 +1,11 @@
 import nodemailer from "nodemailer";
+import fs from "fs";
+import path from "path";
+import os from "os";
 import { prisma } from "./prisma";
 import { getCurrentWeekKey, getWeekDateRange } from "./weeks";
 
+const isDev = process.env.NODE_ENV !== "production";
 const hasSmtp = !!process.env.EMAIL_SERVER;
 
 export const transporter = hasSmtp
@@ -11,19 +15,28 @@ export const transporter = hasSmtp
 export const EMAIL_FROM = process.env.EMAIL_FROM || "noreply@rideshiftrva.com";
 
 export async function sendMail(options: nodemailer.SendMailOptions) {
+  const urls = typeof options.html === "string" ? [...options.html.matchAll(/href="([^"]*)"/g)] : [];
+
+  // In dev mode, write the first link to a temp file for automation tooling
+  if (isDev && urls.length > 0) {
+    const tmpFile = path.join(os.tmpdir(), "rideshiftrva-last-email-link.txt");
+    fs.writeFileSync(tmpFile, urls[0][1]);
+  }
+
   if (transporter) {
     await transporter.sendMail(options);
-  } else {
+  } else if (isDev) {
     console.log("\n╔══════════════════════════════════════════════════════════════╗");
     console.log("║  EMAIL (no SMTP configured — set EMAIL_SERVER to send)     ║");
     console.log("╚══════════════════════════════════════════════════════════════╝");
     console.log(`  To:      ${options.to}`);
     console.log(`  Subject: ${options.subject}`);
-    const urls = typeof options.html === "string" ? [...options.html.matchAll(/href="([^"]*)"/g)] : [];
     for (const match of urls) {
       console.log(`  Link:    ${match[1]}`);
     }
     console.log("");
+  } else {
+    console.error("EMAIL_SERVER is not configured — email not sent");
   }
 }
 
