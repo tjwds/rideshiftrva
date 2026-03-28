@@ -13,12 +13,18 @@ export function SiteHeader() {
         </Link>
         <nav className="flex items-center gap-2">
           <Link href="/info">
-            <Button className="bg-transparent text-zinc-600 hover:text-zinc-900" size="sm">
+            <Button
+              className="bg-transparent text-zinc-600 hover:text-zinc-900"
+              size="sm"
+            >
               Transit Resources
             </Button>
           </Link>
           <Link href="/goal">
-            <Button className="bg-transparent text-zinc-600 hover:text-zinc-900" size="sm">
+            <Button
+              className="bg-transparent text-zinc-600 hover:text-zinc-900"
+              size="sm"
+            >
               My Goal
             </Button>
           </Link>

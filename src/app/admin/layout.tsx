@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { auth } from "@/lib/auth";
 import { redirect } from "next/navigation";
 import Link from "next/link";
-import { Button } from "@heroui/react";
+import { AdminNav } from "@/components/admin/AdminNav";
 
 export const metadata: Metadata = {
   title: "Admin",
@@ -17,27 +17,14 @@ export default async function AdminLayout({
   if (!session?.user?.isAdmin) redirect("/");
 
   return (
-    <div className="mx-auto max-w-5xl p-4 py-8">
-      <div className="mb-8 flex items-center justify-between">
-        <div className="flex items-center gap-6">
+    <div className="mx-auto max-w-3xl p-4 py-8">
+      <div className="mb-8 flex items-center justify-between border-b border-zinc-200 pb-4">
+        <div className="flex items-center gap-8">
           <h1 className="text-2xl font-bold text-green-600">Admin</h1>
-          <nav className="flex gap-2">
-            <Link href="/admin">
-              <Button className="bg-zinc-100 text-zinc-700" size="sm">
-                Stats
-              </Button>
-            </Link>
-            <Link href="/admin/rewards">
-              <Button className="bg-zinc-100 text-zinc-700" size="sm">
-                Rewards
-              </Button>
-            </Link>
-          </nav>
+          <AdminNav />
         </div>
-        <Link href="/">
-          <Button className="bg-zinc-100 text-zinc-700" size="sm">
-            Back to App
-          </Button>
+        <Link href="/" className="text-sm text-zinc-500 hover:text-zinc-700">
+          &larr; Back to App
         </Link>
       </div>
       {children}

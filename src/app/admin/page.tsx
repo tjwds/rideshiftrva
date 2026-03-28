@@ -10,7 +10,7 @@ export default async function AdminPage() {
       prisma.user.count(),
       prisma.goal.count(),
       prisma.weeklyCheckIn.count({
-        where: { confirmed: true, weekKey },
+        where: { response: "yes", weekKey },
       }),
       prisma.redemption.groupBy({
         by: ["rewardId"],
