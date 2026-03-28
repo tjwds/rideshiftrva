@@ -152,6 +152,13 @@
     "magicLinkSent": "We sent you a magic link. Click it to sign in.",
     "checkSpam": "If you don't see it, check your spam folder."
   },
+  "unsubscribe": {
+    "title": "Unsubscribe",
+    "success": "You've been unsubscribed from RideShift RVA emails.",
+    "successDetail": "You won't receive weekly check-in or reward emails. You can still sign in and use the app.",
+    "invalid": "Invalid unsubscribe link.",
+    "backHome": "Back to RideShift RVA"
+  },
   "info": {
     "title": "Richmond Transit Resources",
     "subtitle": "Everything you need to get around Richmond without a car.",

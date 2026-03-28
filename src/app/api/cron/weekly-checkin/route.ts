@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "crypto";
 import { prisma } from "@/lib/prisma";
-import { sendMail, EMAIL_FROM } from "@/lib/email";
+import { sendMail, EMAIL_FROM, emailFooter } from "@/lib/email";
 import { getCurrentWeekKey, getModeLabel } from "@/lib/weeks";
 
 export async function GET(request: NextRequest) {
@@ -14,7 +14,7 @@ export async function GET(request: NextRequest) {
   const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
 
   const usersWithGoals = await prisma.user.findMany({
-    where: { goal: { isNot: null } },
+    where: { goal: { isNot: null }, emailOptOut: { not: true } },
     include: { goal: true },
   });
 
@@ -80,6 +80,7 @@ export async function GET(request: NextRequest) {
             <p style="color: #666; font-size: 14px;">
               <a href="${baseUrl}/goal" style="color: #16a34a;">Want to change your goals?</a>
             </p>
+            ${emailFooter(user.email!)}
           </div>
         `,
       });

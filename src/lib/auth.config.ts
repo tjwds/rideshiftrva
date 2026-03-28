@@ -1,6 +1,6 @@
 import type { NextAuthConfig } from "next-auth";
 import Nodemailer from "next-auth/providers/nodemailer";
-import { sendMail, EMAIL_FROM } from "./email";
+import { sendMail, EMAIL_FROM, emailFooter } from "./email";
 import { prisma } from "./prisma";
 
 const baseUrl = process.env.NEXTAUTH_URL || "http://localhost:3000";
@@ -75,6 +75,7 @@ export const authConfig: NextAuthConfig = {
               <p style="color: #666; font-size: 14px; margin-top: 16px;">
                 Move green, save green.
               </p>
+              ${emailFooter(user.email!)}
             </div>
           `,
         });

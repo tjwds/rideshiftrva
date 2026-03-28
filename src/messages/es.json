@@ -152,6 +152,13 @@
     "magicLinkSent": "Te enviamos un enlace mágico. Haz clic para iniciar sesión.",
     "checkSpam": "Si no lo ves, revisa tu carpeta de spam."
   },
+  "unsubscribe": {
+    "title": "Cancelar suscripción",
+    "success": "Te has dado de baja de los correos de RideShift RVA.",
+    "successDetail": "No recibirás correos semanales de verificación ni de recompensas. Aún puedes iniciar sesión y usar la app.",
+    "invalid": "Enlace de cancelación inválido.",
+    "backHome": "Volver a RideShift RVA"
+  },
   "info": {
     "title": "Recursos de transporte de Richmond",
     "subtitle": "Todo lo que necesitas para moverte por Richmond sin auto.",
