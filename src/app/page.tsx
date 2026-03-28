@@ -18,6 +18,21 @@ const PARTICIPATING_BUSINESSES = [
     logo: "/mhn-logo.webp",
     website: "https://moultonhotnatives.square.site/",
   },
+  {
+    name: "West Broad Studios",
+    logo: "/wbstudios-logo.png",
+    website: "https://westbroadstudios.com/",
+  },
+  {
+    name: "Tito's Taqueria",
+    logo: "/titos-logo.png",
+    website: "https://titostaqueriabarvirginia.com/",
+  },
+  {
+    name: "Common House",
+    logo: "/ch-logo.webp",
+    website: "https://www.commonhouse.com/",
+  },
 ];
 
 function LandingPage() {
@@ -165,20 +180,20 @@ function LandingPage() {
           <p className="mt-2 text-zinc-500">
             Local businesses already on board
           </p>
-          <div className="mt-8 flex justify-center items-center gap-12">
+          <div className="mt-8 flex flex-wrap justify-center items-center gap-8 sm:gap-12">
             {PARTICIPATING_BUSINESSES.map((biz) => (
               <a
                 key={biz.name}
                 href={biz.website}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="transition-opacity hover:opacity-80"
+                className="flex h-20 w-32 items-center justify-center transition-opacity hover:opacity-80"
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={biz.logo}
                   alt={biz.name}
-                  className="h-24 w-auto rounded-lg object-contain"
+                  className="max-h-full max-w-full rounded-lg object-contain"
                 />
               </a>
             ))}
