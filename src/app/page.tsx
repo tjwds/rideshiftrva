@@ -159,15 +159,6 @@ function LandingPage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="px-4 py-12 text-center">
-        <p className="font-semibold text-zinc-700">
-          Built at the Richmond Civic Hackathon
-        </p>
-        <p className="mt-1 text-sm text-zinc-500">
-          A real solution for real Richmonders — no car required.
-        </p>
-      </footer>
     </div>
   );
 }

@@ -29,7 +29,17 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Providers>{children}</Providers>
+        <Providers>
+          <div className="flex-1">{children}</div>
+          <footer className="px-4 py-8 text-center border-t border-zinc-100">
+            <p className="font-semibold text-zinc-700">
+              Built at the Richmond Civic Hackathon
+            </p>
+            <p className="mt-1 text-sm text-zinc-500">
+              A real solution for real Richmonders — no car required.
+            </p>
+          </footer>
+        </Providers>
       </body>
     </html>
   );
