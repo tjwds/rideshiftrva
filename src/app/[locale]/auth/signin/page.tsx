@@ -14,9 +14,11 @@ export default async function SignInPage({
   const { locale } = await params;
   setRequestLocale(locale);
 
+  const enableApp = process.env.ENABLE_APP === "true";
+
   return (
     <div className="flex min-h-screen items-center justify-center p-4">
-      <SignInForm />
+      <SignInForm signUpsEnabled={enableApp} />
     </div>
   );
 }

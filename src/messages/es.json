@@ -149,6 +149,8 @@
   "auth": {
     "signInTitle": "RideShift RVA",
     "signInSubtitle": "Inicia sesión con tu correo",
+    "signInSubtitleExisting": "Inicia sesión con tu cuenta existente",
+    "signUpsDisabled": "Los registros nuevos están cerrados por el momento. Si ya tienes una cuenta, aún puedes iniciar sesión.",
     "goalConfirmed": "¡Meta confirmada! Inicia sesión para reclamar tus recompensas.",
     "emailLabel": "Correo electrónico",
     "sendMagicLink": "Enviar enlace mágico",

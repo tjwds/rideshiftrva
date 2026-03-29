@@ -5,6 +5,10 @@ import { sendMail, EMAIL_FROM, emailFooter } from "@/lib/email";
 import { getCurrentWeekKey, getModeLabel } from "@/lib/weeks";
 
 export async function GET(request: NextRequest) {
+  if (process.env.ENABLE_APP !== "true") {
+    return NextResponse.json({ error: "App is disabled" }, { status: 503 });
+  }
+
   const authHeader = request.headers.get("authorization");
   if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

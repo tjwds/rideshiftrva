@@ -149,6 +149,8 @@
   "auth": {
     "signInTitle": "RideShift RVA",
     "signInSubtitle": "Sign in with your email",
+    "signInSubtitleExisting": "Sign in with your existing account",
+    "signUpsDisabled": "New sign-ups are currently closed. If you already have an account, you can still sign in.",
     "goalConfirmed": "Goal confirmed! Sign in to claim your rewards.",
     "emailLabel": "Email address",
     "sendMagicLink": "Send Magic Link",

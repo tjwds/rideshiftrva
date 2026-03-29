@@ -39,6 +39,17 @@ export const authConfig: NextAuthConfig = {
     strategy: "jwt",
   },
   callbacks: {
+    async signIn({ user }) {
+      if (process.env.ENABLE_APP !== "true") {
+        const existing = await prisma.user.findUnique({
+          where: { email: user.email! },
+        });
+        if (!existing) {
+          return false;
+        }
+      }
+      return true;
+    },
     jwt({ token, user }) {
       if (user) {
         token.id = user.id!;

@@ -6,7 +6,7 @@ import { Suspense, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 
-function SignInFormInner() {
+function SignInFormInner({ signUpsEnabled }: { signUpsEnabled: boolean }) {
   const t = useTranslations("auth");
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
@@ -23,9 +23,16 @@ function SignInFormInner() {
     <Card className="w-full max-w-md">
       <CardHeader className="flex flex-col gap-1 pb-0">
         <h1 className="text-2xl font-bold text-green-600">{t("signInTitle")}</h1>
-        <p className="text-sm text-zinc-500">{t("signInSubtitle")}</p>
+        <p className="text-sm text-zinc-500">
+          {signUpsEnabled ? t("signInSubtitle") : t("signInSubtitleExisting")}
+        </p>
       </CardHeader>
       <CardContent>
+        {!signUpsEnabled && (
+          <div className="mb-4 rounded-lg bg-amber-50 p-3 text-sm text-amber-700">
+            {t("signUpsDisabled")}
+          </div>
+        )}
         {confirmed && (
           <div className="mb-4 rounded-lg bg-green-50 p-3 text-sm text-green-700">
             {t("goalConfirmed")}
@@ -50,10 +57,10 @@ function SignInFormInner() {
   );
 }
 
-export function SignInForm() {
+export function SignInForm({ signUpsEnabled }: { signUpsEnabled: boolean }) {
   return (
     <Suspense>
-      <SignInFormInner />
+      <SignInFormInner signUpsEnabled={signUpsEnabled} />
     </Suspense>
   );
 }
