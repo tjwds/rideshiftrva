@@ -17,7 +17,7 @@ Built for the 2026 Richmond Hackathon.
 
 ### Prerequisites
 
-- Node.js 20+
+- Node.js 24 (pinned via `engines.node` in `package.json`; Vercel deploys with the latest 24.x)
 - A MongoDB database (free tier on [MongoDB Atlas](https://www.mongodb.com/atlas) works great)
 - SMTP credentials for sending email (we use AWS SES, but any SMTP provider works)
 
